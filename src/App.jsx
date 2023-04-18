@@ -1,30 +1,24 @@
-import { useState } from "react";
-import { ColoredMessage } from "./components/ColoredMessage";
-import { CssModules } from "./components/CssModules";
-import { StyledComponents } from "./components/StyledComponents";
-import { StyledJsx } from "./components/StyledJsx";
-
+import React,{ useState } from "react";
+//import { ColoredMessage } from "./components/ColoredMessage";
+//import { CssModules } from "./components/CssModules";
+//import { StyledComponents } from "./components/StyledComponents";
+//import { StyledJsx } from "./components/StyledJsx";
+//import { Child1 } from "./components/Child1";
+//import { Child4 } from "./components/Child4";
+//import { useCallback } from "react";
+import { Card } from "./components/Card";
 export const App = () =>{
-  console.log("レンダリング");
-  //Stateの定義
-  const [ num, setNum ] = useState(0);
+  //管理者フラグ
+  const [ isAdmin, setIsAdmin ] = useState(false);
   
-  const onClickButton = () =>{
-    setNum(num + 1);
-  };
+  //切り替え押下時
+  const onClickSwitch = () => setIsAdmin(!isAdmin);
   
   return (
-  <>  
-  <h1 style={{ color: "red"}}>こんにちは！</h1>
-  <ColoredMessage />
-  <ColoredMessage color="blue">お元気ですか？</ColoredMessage>
-  <ColoredMessage color="pink">元気です！</ColoredMessage>
-  <button onClick={onClickButton}>ボタン</button>
-  <p>{num}</p>
-  <p></p>
-  <CssModules />
-  <StyledJsx />
-  <StyledComponents />
-  </>
+  <div>
+    {isAdmin ? <span>管理者です</span> : <span>管理者以外です</span>}
+    <button onClick={onClickSwitch}>切り替え</button>
+    <Card isAdmin={isAdmin}/>
+  </div>
   );
-}
+};
